@@ -11,12 +11,7 @@ function EnemyShip() {
 
 	this.startupEnemyShip = function(image, x, y, boundary, textList) {
 		
-		var index = Math.random()*19;
-		
-		if(index > 18)
-		{
-			index = 18;
-		}
+		var index = Math.min(Math.random()*19, 18);
 		
 		this.text = words[Math.floor(index)];
 		textList.push(this.text);
