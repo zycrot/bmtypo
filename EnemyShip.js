@@ -10,8 +10,15 @@ function EnemyShip() {
 	this.boundary
 
 	this.startupEnemyShip = function(image, x, y, boundary, textList) {
-
-		this.text = words[Math.floor(Math.random() * 20)];
+		
+		var index = Math.random()*19;
+		
+		if(index > 18)
+		{
+			index = 18;
+		}
+		
+		this.text = words[Math.floor(index)];
 		textList.push(this.text);
 		this.boundary = boundary;
 		
