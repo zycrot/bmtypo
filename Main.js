@@ -177,120 +177,8 @@ function canvasApp() {
 	 Updates all objects
 	 */
 	function update() {
-		if(keyPressed) {
-			updateTyping();
-		}
 		updateEnemies();
 		updateBullets();
-	}
-
-	// Displays the current text being typed
-	function updateTyping() {
-		if(keyPressList[65] == true && pressed[65] != true) {// a
-			pressed[65] = true;
-			if(checkInput("a"))
-				inputtedText += "a";
-		} else if(keyPressList[66] == true && pressed[66] != true) {// b
-			pressed[66] = true;
-			if(checkInput("b"))
-				inputtedText += "b";
-		} else if(keyPressList[67] == true && pressed[67] != true) {// c
-			pressed[67] = true;
-			if(checkInput("c"))
-				inputtedText += "c";
-		} else if(keyPressList[68] == true && pressed[68] != true) {// d
-			pressed[68] = true;
-			if(checkInput("d"))
-				inputtedText += "d";
-		} else if(keyPressList[69] == true && pressed[69] != true) {// e
-			pressed[69] = true;
-			if(checkInput("e"))
-				inputtedText += "e";
-		} else if(keyPressList[70] == true && pressed[70] != true) {// f
-			pressed[70] = true;
-			if(checkInput("f"))
-				inputtedText += "f";
-		} else if(keyPressList[71] == true && pressed[71] != true) {// g
-			pressed[71] = true;
-			if(checkInput("g"))
-				inputtedText += "g";
-		} else if(keyPressList[72] == true && pressed[72] != true) {// h
-			pressed[72] = true;
-			if(checkInput("h"))
-				inputtedText += "h";
-		} else if(keyPressList[73] == true && pressed[73] != true) {// i
-			pressed[73] = true;
-			if(checkInput("i"))
-				inputtedText += "i";
-		} else if(keyPressList[74] == true && pressed[74] != true) {// j
-			pressed[74] = true;
-			if(checkInput("j"))
-				inputtedText += "j";
-		} else if(keyPressList[75] == true && pressed[75] != true) {// k
-			pressed[75] = true;
-			if(checkInput("k"))
-				inputtedText += "k";
-		} else if(keyPressList[76] == true && pressed[76] != true) {// l
-			pressed[76] = true;
-			if(checkInput("l"))
-				inputtedText += "l";
-		} else if(keyPressList[77] == true && pressed[77] != true) {// m
-			pressed[77] = true;
-			if(checkInput("m"))
-				inputtedText += "m";
-		} else if(keyPressList[78] == true && pressed[78] != true) {// n
-			pressed[78] = true;
-			if(checkInput("n"))
-				inputtedText += "n";
-		} else if(keyPressList[79] == true && pressed[79] != true) {// o
-			pressed[79] = true;
-			if(checkInput("o"))
-				inputtedText += "o";
-		} else if(keyPressList[80] == true && pressed[80] != true) {// p
-			pressed[80] = true;
-			if(checkInput("p"))
-				inputtedText += "p";
-		} else if(keyPressList[81] == true && pressed[81] != true) {// q
-			pressed[81] = true;
-			if(checkInput("q"))
-				inputtedText += "q";
-		} else if(keyPressList[82] == true && pressed[82] != true) {// r
-			pressed[82] = true;
-			if(checkInput("r"))
-				inputtedText += "r";
-		} else if(keyPressList[83] == true && pressed[83] != true) {// s
-			pressed[83] = true;
-			if(checkInput("s"))
-				inputtedText += "s";
-		} else if(keyPressList[84] == true && pressed[84] != true) {// t
-			pressed[84] = true;
-			if(checkInput("t"))
-				inputtedText += "t";
-		} else if(keyPressList[85] == true && pressed[85] != true) {// u
-			pressed[85] = true;
-			if(checkInput("u"))
-				inputtedText += "u";
-		} else if(keyPressList[86] == true && pressed[86] != true) {// v
-			pressed[86] = true;
-			if(checkInput("v"))
-				inputtedText += "v";
-		} else if(keyPressList[87] == true && pressed[87] != true) {// w
-			pressed[87] = true;
-			if(checkInput("w"))
-				inputtedText += "w";
-		} else if(keyPressList[88] == true && pressed[88] != true) {// x
-			pressed[88] = true;
-			if(checkInput("x"))
-				inputtedText += "x";
-		} else if(keyPressList[89] == true && pressed[89] != true) {// y
-			pressed[89] = true;
-			if(checkInput("y"))
-				inputtedText += "y";
-		} else if(keyPressList[90] == true && pressed[90] != true) {// z
-			pressed[90] = true;
-			if(checkInput("z"))
-				inputtedText += "z";
-		}
 	}
 
 	// Checks if letter input is valid based on the words currently on the field
@@ -400,20 +288,16 @@ function canvasApp() {
 			}
 		}
 	}
-	// on key down event function
-	document.onkeydown = function(e) {
+
+	// on key press event function
+	document.onkeypress = function(e) {
 		e = e ? e : window.event;
-		keyPressed = true;
-		keyPressList[e.keyCode] = true;
+		var c = String.fromCharCode(e.which);
+		if(checkInput(c)) {
+			inputtedText += c;
+		}
 	}
-	// on key up event function
-	document.onkeyup = function(e) {
-		//document.body.onkeyup = function(e){
-		e = e ? e : window.event;
-		keyPressed = false;
-		keyPressList[e.keyCode] = false;
-		pressed[e.keyCode] = false;
-	}
+
 	//*** APPLICATION START
 	switchGameState(gameStateManager.GAME_STATE_INIT);
 	var frameRateCounter = new FrameRateCounter(GP.FPS);
