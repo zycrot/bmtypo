@@ -196,12 +196,15 @@ function canvasApp() {
 				if(ch == targetText.charAt(progressIndex)) {
 					progressIndex++;
 					enemyList[i].hits++;
+				
+					if(progressIndex == targetText.length) {
+						// create bullet to shoot at enemy
+						bullet.startupBullet(GP.bulletImg, GP.C_WIDTH / 2 - GP.playerBaseImg.width / 2, GP.C_HEIGHT - GP.playerBaseImg.height - 10)
+						bulletList.push(bullet);
+					}
+
 					return true;
 				}
-			} else if(progressIndex == targetText.length) {
-				// create bullet to shoot at enemy
-				bullet.startupBullet(GP.bulletImg, GP.C_WIDTH / 2 - GP.playerBaseImg.width / 2, GP.C_HEIGHT - GP.playerBaseImg.height - 10)
-				bulletList.push(bullet);
 			}
 		}
 	}
@@ -221,7 +224,7 @@ function canvasApp() {
 
 	function updateBullets() {
 		for(var i = 0; i < bulletList.length; i++) {
-			bulletList[i].update(frameRateCounter.step);
+			bulletList[i].update(frameRateCounter.step, targetEnemy.x, targetEnemy.y);
 		}
 	}
 
